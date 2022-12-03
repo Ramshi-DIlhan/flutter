@@ -3,7 +3,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="gitpod_flutter_quickstart"
+        android:label="treasure_hunt"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
