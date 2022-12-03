@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "296473709632",
+    "project_id": "treasure-hunt-7d775",
+    "storage_bucket": "treasure-hunt-7d775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296473709632:android:36bc4a19857df1618da3a5",
+        "android_client_info": {
+          "package_name": "com.example.gitpod_flutter_quickstart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296473709632-viuelmr812c6jhris75s4tvipao5l74g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQpV54fPiDUrR8xAYdkov-cLPCeyb_Pm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296473709632-viuelmr812c6jhris75s4tvipao5l74g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "296473709632-0nfhnbtpva5an74ikrnq3ot2t8lsnanc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gitpodFlutterQuickstart"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
