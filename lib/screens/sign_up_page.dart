@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitpod_flutter_quickstart/screens/login_page.dart';
+import 'package:gitpod_flutter_quickstart/service/auth.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class SignUpPage extends StatelessWidget {
   final password = TextEditingController();
 
   final _fkey = GlobalKey<FormState>();
+  final _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +77,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   onTap: () {
                     if (_fkey.currentState!.validate()) {
-                      print('success');
+                      _auth.SignUp(name.text, dept.text, email.text, password.text);
                     }
                   },
                 )
