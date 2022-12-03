@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gitpod_flutter_quickstart/screens/qr.dart';
 import 'package:gitpod_flutter_quickstart/service/auth.dart';
+import 'package:gitpod_flutter_quickstart/service/controller.dart';
 import 'package:gitpod_flutter_quickstart/service/database.dart';
 
-class QrScanPage extends StatelessWidget {
+class QrScanPage extends StatefulWidget {
   String uid;
   QrScanPage({Key? key,required this.uid}) : super(key: key);
 
+  @override
+  State<QrScanPage> createState() => _QrScanPageState();
+}
+
+class _QrScanPageState extends State<QrScanPage> {
   final _auth = AuthService();
+
   final text = TextEditingController();
+
+
+  double i = 0;
 
   @override
   Widget build(BuildContext context) {
+    DatabaseService(uid: widget.uid).updateScore(update);
     _auth.listenAuth();
     return Scaffold(
       appBar: AppBar(
+        title: Text('score: ${i.toString().split('.')[0]}'),
         actions: [
           ElevatedButton(
             onPressed: () {_auth.Logout();},
@@ -41,21 +54,24 @@ class QrScanPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 50),
           child: Column(
             children: [
-              TextFormField(
-                controller: text,
+              SizedBox(height: 100),
+              SizedBox(
+                height: 300,
+                width: 300,
+                child: QrCamera(uid: widget.uid,update: update),
               ),
-              ElevatedButton(
-                onPressed: (){
-                  DatabaseService(uid: uid).playerJob(text.text);
-                },
-                child: Text(
-                  'press'
-                ),
-              ),
+              SizedBox(height: 50),
+              Text('Scan QR codes in your campus')
             ],
           ),
         ),
       ),
     );
+  }
+
+  void update(double score)async{
+    setState(() {
+      i = score*100.toInt();
+    });
   }
 }

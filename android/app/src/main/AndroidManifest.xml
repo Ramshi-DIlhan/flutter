@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gitpod_flutter_quickstart">
+    <uses-permission android:name="android.permission.CAMERA" />
    <application
         android:label="gitpod_flutter_quickstart"
         android:name="${applicationName}"
