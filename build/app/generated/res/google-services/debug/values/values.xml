@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">296473709632-viuelmr812c6jhris75s4tvipao5l74g.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">296473709632</string>
+    <string name="google_api_key" translatable="false">AIzaSyDQpV54fPiDUrR8xAYdkov-cLPCeyb_Pm4</string>
+    <string name="google_app_id" translatable="false">1:296473709632:android:36bc4a19857df1618da3a5</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDQpV54fPiDUrR8xAYdkov-cLPCeyb_Pm4</string>
+    <string name="google_storage_bucket" translatable="false">treasure-hunt-7d775.appspot.com</string>
+    <string name="project_id" translatable="false">treasure-hunt-7d775</string>
+</resources>
