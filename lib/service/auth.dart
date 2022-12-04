@@ -9,23 +9,35 @@ import 'package:get/get.dart';
 class AuthService {
   final _auth = FirebaseAuth.instance;
 
-  void SignUp(String name, String dept, String email, String password) async {
+  Future<String> SignUp(String name, String dept, String email, String password) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      DatabaseService(uid: result.user!.uid).initPlayer(name, dept, email);
+          email: email.trim(), password: password);
+      DatabaseService(uid: result.user!.uid).initPlayer(name, dept, email.trim());
       Get.off(() => QrScanPage(uid: result.user!.uid,));
-    } catch (e) {
-      print(e);
+      return '';
+    }on FirebaseAuthException catch (e) {
+      // print(e.code);
+      if(e.code == 'wrong-password')return 'Incorrect Password';
+      else if(e.code=='user-not-found')return 'Incorrect Username';
+      else if(e.code=='invalid-email')return 'Email Format is not correct (eg:example@gmail.com)';
+      else if(e.code=='email-already-in-use')return 'Email is already registered';
+      else return e.message.toString();
     }
   }
 
-  void SignIn(String email, String password) async {
+  Future<String> SignIn(String email, String password) async {
     try {
-      final result = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      final result = await _auth.signInWithEmailAndPassword(email: email.trim(), password: password);
       Get.off(() => QrScanPage(uid: result.user!.uid,));
-    } catch (e) {
-      print(e);
+      return '';
+    }on FirebaseAuthException catch (e) {
+      // print(e.code);
+      if(e.code == 'wrong-password')return 'Incorrect Password';
+      else if(e.code=='user-not-found')return 'Incorrect Username';
+      else if(e.code=='invalid-email')return 'Email Format is not correct (eg:example@gmail.com)';
+      else if(e.code=='email-already-in-use')return 'Email is already registered';
+      else return e.message.toString();
     }
   }
 

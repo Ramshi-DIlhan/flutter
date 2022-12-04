@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitpod_flutter_quickstart/screens/sign_up_page.dart';
 import 'package:gitpod_flutter_quickstart/service/auth.dart';
+import 'package:gitpod_flutter_quickstart/service/controller.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class LoginPage extends StatelessWidget {
 
   final _fkey = GlobalKey<FormState>();
   final _auth = AuthService();
+  final _cont = Controller();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,9 @@ class LoginPage extends StatelessWidget {
         title: Text('Sign In'),
         actions: [
           ElevatedButton(
-            onPressed: () {Get.off(()=>SignUpPage());},
+            onPressed: () {
+              Get.off(() => SignUpPage());
+            },
             child: Row(
               children: [
                 Icon(
@@ -29,9 +33,7 @@ class LoginPage extends StatelessWidget {
                 SizedBox(width: 5),
                 Text(
                   'Register',
-                  style: TextStyle(
-                    color: Colors.white
-                  ),
+                  style: TextStyle(color: Colors.white),
                 )
               ],
             ),
@@ -49,7 +51,14 @@ class LoginPage extends StatelessWidget {
                 textfield('Email', email, false),
                 SizedBox(height: 20),
                 textfield('Password', password, true),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
+                Obx(() {
+                  return Text(
+                    _cont.error.value,
+                    style: TextStyle(color: Colors.red, fontSize: 15),
+                  );
+                }),
+                SizedBox(height: 10),
                 GestureDetector(
                   child: Container(
                     height: 50,
@@ -69,9 +78,10 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onTap: () {
+                  onTap: () async {
                     if (_fkey.currentState!.validate()) {
-                      _auth.SignIn(email.text, password.text);
+                      _cont.error.value =
+                          await _auth.SignIn(email.text, password.text);
                     }
                   },
                 )

@@ -13,8 +13,8 @@
 13         to allow setting breakpoints, to provide hot reload, etc.
 14    -->
 15    <uses-permission android:name="android.permission.INTERNET" />
-15-->/workspace/flutter/android/app/src/debug/AndroidManifest.xml:7:5-66
-15-->/workspace/flutter/android/app/src/debug/AndroidManifest.xml:7:22-64
+15-->/workspace/flutter/android/app/src/main/AndroidManifest.xml:4:5-66
+15-->/workspace/flutter/android/app/src/main/AndroidManifest.xml:4:22-64
 16    <uses-permission android:name="android.permission.CAMERA" />
 16-->/workspace/flutter/android/app/src/main/AndroidManifest.xml:3:5-65
 16-->/workspace/flutter/android/app/src/main/AndroidManifest.xml:3:22-62
@@ -27,8 +27,8 @@
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.6.0] /workspace/.gradle/caches/transforms-3/b11c0e2c212c747cb4bcf29314469768/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
 22        android:debuggable="true"
-23        android:icon="@mipmap/ic_launcher"
-24        android:label="gitpod_flutter_quickstart" >
+23        android:icon="@mipmap/launcher_icon"
+24        android:label="treasure_hunt" >
 25        <activity
 26            android:name="com.example.gitpod_flutter_quickstart.MainActivity"
 27            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

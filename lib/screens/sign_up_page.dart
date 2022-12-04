@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gitpod_flutter_quickstart/screens/login_page.dart';
 import 'package:gitpod_flutter_quickstart/service/auth.dart';
+import 'package:gitpod_flutter_quickstart/service/controller.dart';
 
 class SignUpPage extends StatelessWidget {
   SignUpPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class SignUpPage extends StatelessWidget {
 
   final _fkey = GlobalKey<FormState>();
   final _auth = AuthService();
+  final _cont = Controller();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,14 @@ class SignUpPage extends StatelessWidget {
                 textfield('Email', email, false),
                 SizedBox(height: 20),
                 textfield('Password', password, true),
-                SizedBox(height: 20),
+                 SizedBox(height: 10),
+                Obx(() {
+                  return Text(
+                    _cont.error.value,
+                    style: TextStyle(color: Colors.red, fontSize: 15),
+                  );
+                }),
+                SizedBox(height: 10),
                 GestureDetector(
                   child: Container(
                     height: 50,
@@ -75,9 +84,9 @@ class SignUpPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onTap: () {
+                  onTap: () async{
                     if (_fkey.currentState!.validate()) {
-                      _auth.SignUp(name.text, dept.text, email.text, password.text);
+                      _cont.error.value = await _auth.SignUp(name.text, dept.text, email.text, password.text);
                     }
                   },
                 )
@@ -108,8 +117,22 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
       validator: (val) {
-        return val!.isEmpty ? 'Please Enter Correct Details..!' : null;
+        return val!.isEmpty ? 'Please Enter Correct Details': (obscure==true && val.length <8 ? 'Password must contain atleast 8 charecters':null);
       },
     );
   }
 }
+
+// if(val!=null){
+//   if(obs=true || val.leng<5){
+//     return slfkd
+//   }
+//   else if()
+//   else return null
+// }
+// else{return null}
+
+
+
+
+// com.example.gitpod_flutter_quickstart
