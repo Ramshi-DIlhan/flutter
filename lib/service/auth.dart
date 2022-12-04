@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 class AuthService {
   final _auth = FirebaseAuth.instance;
 
-  Future<String> SignUp(String name, String dept, String email, String password) async {
+  Future<String> SignUp(String name, String dept, String email, String password,String phone) async {
     try {
       final result = await _auth.createUserWithEmailAndPassword(
           email: email.trim(), password: password);
-      DatabaseService(uid: result.user!.uid).initPlayer(name, dept, email.trim());
+      DatabaseService(uid: result.user!.uid).initPlayer(name, dept, email.trim(),phone);
       Get.off(() => QrScanPage(uid: result.user!.uid,));
       return '';
     }on FirebaseAuthException catch (e) {
@@ -52,7 +52,7 @@ class AuthService {
 
   void listenAuth()async{
     _auth.authStateChanges().listen((user) {
-      if(user!.uid=='SbNYSEBfsTghca4L4F6kAstKs772'){
+      if(user!.uid=='e8LRMEBAeZeDVYxFTkj7zX0HiST2'){
         Get.off(()=>AdminPage());
       }
       else if(user!=null){

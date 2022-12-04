@@ -13,11 +13,12 @@ class DatabaseService{
 
   final _db = FirebaseFirestore.instance;
 
-  void initPlayer(String name, String dept,String email)async{
+  void initPlayer(String name, String dept,String email,String phone)async{
     await _db.collection('Players').doc(uid).set({
       'name':name,
       'dept':dept,
       'email':email,
+      'phone':phone,
       'uid':uid,
       'score':0,
       'clues':[],
@@ -40,6 +41,25 @@ class DatabaseService{
       }
       else{ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid QR code'),backgroundColor: Colors.red));}
     });
+  }
+
+  List<QueryDocumentSnapshot> allPlayers = [];
+
+  Future<List> AdminFetch()async{
+    await _db.collection('Players').orderBy('score',descending: true).get().then((value) {
+      value.docs.forEach((element) {
+        allPlayers.add(element);
+      });
+    });
+    return allPlayers;
+  }
+
+  Future<Map<String, dynamic>?> PlayerFetch(String id)async{
+    var s;
+    await _db.collection('Players').doc(id).get().then((value) {
+      s= value.data();
+    });
+    return s;
   }
 
  void updateScore(Function update)async{

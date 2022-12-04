@@ -5,4 +5,5 @@ class Controller extends GetxController{
   var error = ''.obs;
   var isTorch=false.obs;
   Rx<CameraFacing> isCamera = CameraFacing.front.obs;
+  var listcount = 0.obs;
 }

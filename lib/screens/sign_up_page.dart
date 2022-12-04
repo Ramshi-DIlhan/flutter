@@ -11,6 +11,7 @@ class SignUpPage extends StatelessWidget {
   final dept = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+  final phone = TextEditingController();
 
   final _fkey = GlobalKey<FormState>();
   final _auth = AuthService();
@@ -54,6 +55,8 @@ class SignUpPage extends StatelessWidget {
                 SizedBox(height: 20),
                 textfield('Department', dept, false),
                 SizedBox(height: 20),
+                textfield('Phone', phone, false),
+                SizedBox(height: 20),
                 textfield('Email', email, false),
                 SizedBox(height: 20),
                 textfield('Password', password, true),
@@ -86,7 +89,7 @@ class SignUpPage extends StatelessWidget {
                   ),
                   onTap: () async{
                     if (_fkey.currentState!.validate()) {
-                      _cont.error.value = await _auth.SignUp(name.text, dept.text, email.text, password.text);
+                      _cont.error.value = await _auth.SignUp(name.text, dept.text, email.text, password.text,phone.text);
                     }
                   },
                 )
@@ -117,20 +120,13 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
       validator: (val) {
-        return val!.isEmpty ? 'Please Enter Correct Details': (obscure==true && val.length <8 ? 'Password must contain atleast 8 charecters':null);
+        return val!.isEmpty ? 'Please Enter Correct Details': (obscure==true && val.length <8 ? 'Password must contain atleast 8 charecters':(name=='Phone' && val.length<10?'Phone number should be 10 digits':null));
       },
     );
   }
 }
 
-// if(val!=null){
-//   if(obs=true || val.leng<5){
-//     return slfkd
-//   }
-//   else if()
-//   else return null
-// }
-// else{return null}
+
 
 
 
